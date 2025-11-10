@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{LightBlue}{Cyan!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Lemma,]{lemsty}
+\declaretheorem[style=lemsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightGreen}
+
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=defsty,numberlike=theorem]{definition}
+\tcolorboxenvironment{definition}{colback=LightGreen}
+
+\declaretheoremstyle[name=Problem,]{probsty}
+\declaretheorem[style=probsty,numberlike=section]{problem}
+\tcolorboxenvironment{problem}{colback=LightBlue}
+
+
+\newenvironment{solution}{\paragraph{Solution:}}{\hfill$\square$}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Putnam 2024 A}
+        \HRule{2.0pt} \\ [0.6cm] \LARGE{Math Competitions} \vspace*{10\baselineskip}
+		}
+		}
+\date{\today}
+\author{\textbf{Author} \\ 
+		David Zhang 
+        }
+\maketitle
+\newpage
+\begin{problem}
+    Find all $n \in \mathbb{Z}^+$ such that there exist solutions to 
+    \begin{align*}
+        2a^n + 3b^n = 4c^n,
+    \end{align*}
+    where $a,b,c \in \mathbb{Z}^+$.
+\end{problem}
+
+\begin{problem}
+    Find all polynomials $p(x)$ such that there exist polynomials $q(x)$ that satisfy the equation: 
+    \begin{align*}
+        p(p(x))-x = (p(x)-x)^2q(x).
+    \end{align*}
+\end{problem}
+
+\begin{problem}
+    Let $S$ be the set of bijections 
+    \begin{align}
+        T : \{1,2,3\} \times \{1,2, \dots, 2024\} \rightarrow \{1,2,\dots,6072\}
+    \end{align}
+    such that $T(1,j) < T(2,j) < T(3,j)$ for all $j \in \{1,2,\dots, 2024\}$ and $T(i,j) < T(i,j+1)$ 
+    for all $i \in \{1,2,3\}$ and $j \in \{1,2,\dots, 2023\}$. Do there exist $a$ and $c$ in 
+    $\{1,2,3\}$ and $b$ and $d$ in $\{1,2,\dots,2024\}$ such that the fraction 
+    of elements in $T$ in $S$ for which $T(a,b) < T(c,d)$ is at least $1/3$ and at most $2/3$?
+\end{problem}
+
+\begin{problem}
+    Find all primes $p>5$ for which there exists an integer $a$ and an integer $r$ satisfying $1 \le r \le p-1$
+    with the following property: the sequence $1,a,a^2, \dots, a^{p-5}$ can be arranged to form a sequence 
+    $b_0, b_1, \dots, b_{p-5}$ such that $b_n -b_{n-1}-r$ is divisible by $p$ for $1 \le n \le p-5$.
+\end{problem}
+
+
+\begin{problem}
+    Let $\Omega$ be a circle of radius $9$ centered at the origin. Let $\Delta$ be a disk of radius $1$ with 
+    center $(r,0)$, $r \in [0,8]$. For two points $P,Q$ on $\Omega$, find the $r$ that minimizes the 
+    probability for $PQ$ to be in $\Delta$.
+\end{problem}
+
+
+\begin{problem}
+    For some sufficiently small $x$, write 
+    \begin{align*}
+        \frac{1-3x-\sqrt{(3x-1)^2-8x}}{4} = \sum_{k=0}^{\infty} c_k x^k.
+    \end{align*}
+For some $n \in \mathbb{Z}^n$, let $A$ be the $n\times n$ matrix with $i,j$ entry 
+$c_{i+j-1}$ for $i,j \in \{1,\dots, n\}$. Find the determinant of $A$.
+\end{problem}
+
+
+
+
+% ------------------------------------------------------------------------------
+
+
+% ------------------------------------------------------------------------------
+% Reference and Cited Works
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+
+\end{document}

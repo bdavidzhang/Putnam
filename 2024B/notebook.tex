@@ -1,0 +1,144 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{LightBlue}{Cyan!15}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Lemma,]{lemsty}
+\declaretheorem[style=lemsty,numberlike=theorem]{lemma}
+\tcolorboxenvironment{lemma}{colback=LightGreen}
+
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=defsty,numberlike=theorem]{definition}
+\tcolorboxenvironment{definition}{colback=LightGreen}
+
+\declaretheoremstyle[name=Problem,]{probsty}
+\declaretheorem[style=probsty,numberlike=section]{problem}
+\tcolorboxenvironment{problem}{colback=LightBlue}
+
+
+\newenvironment{solution}{\paragraph{Solution:}}{\hfill$\square$}
+
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+% ------------------------------------------------------------------------------
+% Cover Page and ToC
+% ------------------------------------------------------------------------------
+
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Putnam 2024 A}
+        \HRule{2.0pt} \\ [0.6cm] \LARGE{Math Competitions} \vspace*{10\baselineskip}
+		}
+		}
+\date{\today}
+\author{\textbf{Author} \\ 
+		David Zhang 
+        }
+\maketitle
+\newpage
+\begin{problem}
+    Let $n, k \in \mathbb{Z}^+$. The sequence in the $i$th row and $j$th column of an $n\times n$ grid contains 
+    the numbe $i+j-k$. For which $n$ and $k$ is it possible to select $n$ squares from the grid, no two in the same 
+    row or column, such that the numbers contained in the selected squares are $1,2,\dots, n$?
+\end{problem}
+
+\begin{problem}
+    Two convex quadrilaterals are called partners if they have three verticies in common and they can be labelled 
+    $ABCD$ and $ABCE$ so that $E$ is the reflection of $D$ across the perpendicular bisector of the diagonal $AC$. 
+    Is there an infinite sequence of convex quadrilaterals such that each quadrilateral is a partner of its successor 
+    and no two elements of the sequence are congruent?
+\end{problem}
+
+\begin{problem}
+    Let $r_n$ be the smallet positive solution to $\tan{x} = x$, where the argument of tangent is in radians. Prove that 
+    \begin{align}
+        0 < r_{n+1} - r_n - \pi < \frac{1}{(n^2+n)\pi}
+    \end{align}
+    for $n \ge 1$.
+\end{problem}
+
+\begin{problem}
+    Let $n$ be a positive integer. Set $a_{n,0} = 1$. For $k \ge 0$, choose an integer $m_{n,k}$ uniformly at random 
+    from the set $\{1,\dots,n\}$ and let 
+    $$
+    a_{n,k+1} = 
+    \begin{cases}
+        a_{n,k} + 1 \mathrm{if} m_{n,k} > a_{n,k};\\
+        a_{n,k}  \mathrm{if} m_{n,k} = a_{n,k};\\
+        a_{n,k} - 1 \mathrm{if} m_{n,k} < a_{n,k}.\\
+    \end{cases}
+    $$
+    Let $E(n)$ be the expected value of $a_{n,n}$. Determine $\lim_{n \to \infty} E(n)/n$.
+\end{problem}
+
+
+\begin{problem}
+    Let $k$ and $m$ be integers. For a positive integer $n$, let $f(n)$ be the number of integer sequences $x_1, \dots, x_k, y_1, \dots, y_m, z$ 
+    satisfying $1 \le x_1 \le \dots \le x_k \le z \le n$ and $1 \le y_1 \le \dots \le y_m \le z \le n$. Show that 
+    $f(n)$ can be expressed as a polynomial in $n$ with nonegative coefficients.
+\end{problem}
+
+
+\begin{problem}
+    For a real number $a$, let $F_a(x) = \sum_{n \ge 1} n^a e^{2n} x^{n^2}$ for $0 \le x < 1$. Find a real number $c$ such that 
+    \begin{align}
+        \lim{x \to 1^-} F_a(x) e^{-1/(1-x)} &= 0 \text{for all } a < c, \text{and }\\
+        \lim{x \to 1^-} F_a(x) e^{-1/(1-x)} &= \infty \text{for all } a > c.
+    \end{align}
+\end{problem}
+
+
+
+
+% ------------------------------------------------------------------------------
+
+
+% ------------------------------------------------------------------------------
+% Reference and Cited Works
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+
+\end{document}

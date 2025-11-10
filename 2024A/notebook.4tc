@@ -1,0 +1,7 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\tocloe{}{\csname a:TocLink\endcsname{1}{x1-4}{}{\ifthmt@listswap Problem~1\else \numberline {1}Problem\fi }}{4}\relax 
+\doTocEntry\tocloe{}{\csname a:TocLink\endcsname{1}{x1-7}{}{\ifthmt@listswap Problem~2\else \numberline {2}Problem\fi }}{5}\relax 
+\doTocEntry\tocloe{}{\csname a:TocLink\endcsname{1}{x1-10}{}{\ifthmt@listswap Problem~3\else \numberline {3}Problem\fi }}{6}\relax 
+\doTocEntry\tocloe{}{\csname a:TocLink\endcsname{1}{x1-14}{}{\ifthmt@listswap Problem~4\else \numberline {4}Problem\fi }}{6}\relax 
+\doTocEntry\tocloe{}{\csname a:TocLink\endcsname{1}{x1-17}{}{\ifthmt@listswap Problem~5\else \numberline {5}Problem\fi }}{7}\relax 
+\doTocEntry\tocloe{}{\csname a:TocLink\endcsname{1}{x1-20}{}{\ifthmt@listswap Problem~6\else \numberline {6}Problem\fi }}{7}\relax 

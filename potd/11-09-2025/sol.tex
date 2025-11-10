@@ -1,0 +1,61 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(2024 A5)
+Consider a circle $\Omega$ with radius 9 and center at the origin $(0,0)$, and a disc $\Delta$ with radius 1 and center at $(r,0)$, where $0 \leq r \leq 8$. Two points $P$ and $Q$ are chosen independently and uniformly at random on $\Omega$. Which value(s) of $r$ minimize the probability that the chord $\overline{PQ}$ intersects $\Delta$?
+\section{Solution}
+
+\begin{figure}[h]
+    \begin{center}
+        \includegraphics[width=0.6\linewidth]{image.png}
+    \end{center}
+\end{figure}
+We consider a configuration like the above. Here $P$ and $Q$ are uniformly distributed on the circle. We can first draw a sample $PQ$.
+\begin{center}
+    \includegraphics[width=0.6\linewidth]{image2.png}
+\end{center}
+Let $\theta$ be the angle made between $PQ$ and the $y$ axis. Then we can make the rotation of the coordinate system by $-\theta$ degrees in the 
+(counterclockwise) direction so that the new coordinates for the circle $\Delta$ is $(r\cos{\theta}, -r\sin{\theta})$. 
+\begin{center}
+    \includegraphics[width=0.6\linewidth]{image3.png}
+\end{center}
+As shown, here is another configuration. Now we can determine if the segment PQ intersects $\Delta$ by comparing the $x$ coordinates.
+$P$ and $Q$ have coordinates $9(\cos{\phi},\pm \sin{\phi})$, and the critirea is therfore
+\[|9\cos{\phi} - r\cos{\theta}| \le 1\]
+\[\phi \in [\cos^{-1}(\frac{r\cos{\theta}+1}{9}),\cos^{-1}(\frac{r\cos{\theta}-1}{9})].\]
+
+Now all segments $PQ$ parallel to the current $PQ$ are valid, so we can represent this by considering all angles $\phi \in [0,\pi]$, 
+so the probability that they interset is $\frac{1}{\pi}\left[ \cos^{-1}(\frac{r\cos{\theta}-1}{9})- \cos^{-1}(\frac{r\cos{\theta}+1}{9})\right]$, 
+here we define $f(r,\theta) = \cos^{-1}(\frac{r\cos{\theta}-1}{9})- \cos^{-1}(\frac{r\cos{\theta}+1}{9})$.
+
+Now we can finally integrate over all possible $\theta \in [-\frac{\pi}{2},\frac{\pi}{2}]$. We define $\theta$ to be negative if rotating results in the 
+circle $\Delta$ to be in the first quadrant and negative otherwise (omitting the axes), then the 
+total probability that the chord intersects $\Delta$ is 
+\[I(r) = \frac{1}{\pi^2} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} f(r,\theta) d\theta\]
+
+to find the minimum, we consider the derivative with respect to $I$ to get 
+\[\frac{dI}{dr} = \frac{1}{\pi^2} \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \frac{\partial}{\partial r}f(r,\theta) d\theta.\]
+\begin{align*}
+    \frac{\partial}{\partial r}f(r,\theta) &= \frac{\partial }{\partial r} \left[\cos^{-1}(\frac{r\cos{\theta}-1}{9})- \cos^{-1}(\frac{r\cos{\theta}+1}{9})\right]\\
+    &= \frac{\cos{\theta}}{9} \left[\frac{1}{\sqrt{1-\left(\frac{r\cos{\theta}+1}{9}\right)^2}} - \frac{1}{\sqrt{1-\left(\frac{r\cos{\theta}-1}{9}\right)^2 }}\right]\\ 
+    &= \cos{\theta}\left[\frac{1}{\sqrt{80-r^2\cos^2{\theta}-2r\cos{\theta}}} - \frac{1}{\sqrt{80-r^2\cos^2{\theta}+2r\cos{\theta}}}\right] 
+\end{align*}
+Since $\theta \in [-\frac{\pi}{2},\frac{\pi}{2}]$ and $r \ge 0$, we find that 
+\begin{align*}
+    80-r^2\cos^2{\theta}-2r\cos{\theta} \le 80-r^2\cos^2{\theta}+2r\cos{\theta} \\
+    \sqrt{80-r^2\cos^2{\theta}-2r\cos{\theta}} \le \sqrt{80-r^2\cos^2{\theta}+2r\cos{\theta}} \\
+    \frac{1}{\sqrt{80-r^2\cos^2{\theta}-2r\cos{\theta}}} \ge \frac{1}{\sqrt{80-r^2\cos^2{\theta}+2r\cos{\theta}}} \\
+    \frac{1}{\sqrt{80-r^2\cos^2{\theta}-2r\cos{\theta}}} - \frac{1}{\sqrt{80-r^2\cos^2{\theta}+2r\cos{\theta}}} \ge 0\\
+\end{align*}
+
+Hence the integrand for $\frac{dI}{dr}$ is nonnegative, with zero if $r = 0$. Thus the answer is $\boxed{r = 0}$.
+
+
+
+\end{document}
