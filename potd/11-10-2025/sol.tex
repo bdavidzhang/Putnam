@@ -1,0 +1,46 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(2021 B2)
+Determine the maximum value of the sum
+\[
+S = \sum_{n=1}^\infty \frac{n}{2^n} (a_1 a_2 \cdots a_n)^{1/n}
+\]
+over all sequences $a_1, a_2, a_3, \cdots$ of nonnegative real numbers satisfying
+\[
+\sum_{k=1}^\infty a_k = 1.
+\]
+\section{Solution}
+We may not directly get a good result by simply looking at the 
+product $(a_1 \dots a_n)^{\frac{1}{n}}$, but this form is inviting to use AM-GM. 
+
+The step, then, is to see if we can fit it with something else. 
+Note that 
+\[2^{n+1}(a_1 \dots a_n)^{\frac{1}{n}} = (2^{n(n+1)}a_1 \dots a_n)^{\frac{1}{n}}
+ = (4a_1 \dots 4^na_n)^{\frac{1}{n}} \le  \frac{4a_1 + \dots + 4^n a_n}{n}
+ \]
+
+Going back to the original sum then, 
+\begin{align*}
+    S &= \sum_{n=1}^\infty \frac{n}{2^n} (a_1 a_2 \cdots a_n)^{1/n} \le 
+    \sum_{n=1}^\infty \frac{n}{2^n}\frac{1}{2^{n+1}}\sum_{i=1}^{n} {4^ia_i}\\
+    &= \sum_{n=1}^\infty \frac{1}{2^{2n+1}}\sum_{i=1}^{n} {4^ia_i}\\
+    &= \sum_{i=1}^\infty \sum_{n=i}^{\infty} \frac{1}{2^{2n+1}}{4^ia_i}\\
+    &= \frac{1}{2}\sum_{i=1}^\infty {4^{i}a_i}\sum_{n=i}^{\infty} 4^{-n}\\
+    &= \frac{1}{2}\sum_{i=1}^\infty {4^{i}a_i} 4^{-i}\frac{4}{3}\\
+    &= \frac{2}{3}\sum_{i=1}^\infty a_i = \boxed{\frac{2}{3}}.
+\end{align*}
+    
+
+
+
+
+
+
+\end{document}
