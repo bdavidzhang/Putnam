@@ -1,0 +1,42 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(1996 A3) Suppose that each of 20 students has made a choice of anywhere from 0
+to 6 courses from a total of 6 courses offered. Prove or disprove:
+there are 5 students and 2 courses such that all 5 have chosen both
+courses or all 5 have chosen neither course.
+
+\section{Solution}
+We can model this problem as a bipartite graph $K_{20,6}$ with $20$ student 
+nodes and $6$ classes. 
+Color an edge green if a student chooses a class and yellow if a student does not,
+then we are curious if a subgraph $K_{5,2}$ arises where all edges have the same color. 
+
+This problem strikes a strong resemblence to the classic Ramsey theory number 
+$R_{3,3}$, which asks for the smallest $n$ such that a complete graph $K_n$ with two coloring that has a 
+subgraph of $K_3$ with all edges of the same color. Please review this solution 
+before proceeding.
+
+Now we can consider the number of monochromatic edges. Say a student chooses $k$ classes,
+then he contributes 
+\({k \choose 2} + {6-k \choose 2}\)
+monochromatic edges. The minimum number of such edges he can contribute is 
+\[m_{min} = \min_{k \in [0,6]} {k \choose 2} + {6-k \choose 2} = 6.\]
+Thus the min total number of monochromatic edges is 
+\[M = 20*m_{min} = 120.\]
+And there are ${6 \choose 2} = 15$ course pairs, so the min 
+number of courses each course pair could have is $120/15 = 8$
+from the pigonhole principle. 
+
+For a particular course pair in this case, let $x$ be the number of students that chose this course 
+and $y$ be the numebr of students that did not chose this course, then 
+$x + y \ge 8$. We want to show that this implies $x \ge 5$ or $y \ge 5$, 
+however, this might not be true as $x = 4, y = 4$ provides a counterexample. 
+
+\end{document}
