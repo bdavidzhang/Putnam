@@ -29,7 +29,7 @@ Note that
 Going back to the original sum then, 
 \begin{align*}
     S &= \sum_{n=1}^\infty \frac{n}{2^n} (a_1 a_2 \cdots a_n)^{1/n} \le 
-    \sum_{n=1}^\infty \frac{n}{2^n}\frac{1}{2^{n+1}}\sum_{i=1}^{n} {4^ia_i}\\
+    \sum_{n=1}^\infty \frac{1}{2^n}\frac{1}{2^{n+1}}\sum_{i=1}^{n} {4^ia_i}\\
     &= \sum_{n=1}^\infty \frac{1}{2^{2n+1}}\sum_{i=1}^{n} {4^ia_i}\\
     &= \sum_{i=1}^\infty \sum_{n=i}^{\infty} \frac{1}{2^{2n+1}}{4^ia_i}\\
     &= \frac{1}{2}\sum_{i=1}^\infty {4^{i}a_i}\sum_{n=i}^{\infty} 4^{-n}\\
@@ -37,10 +37,22 @@ Going back to the original sum then,
     &= \frac{2}{3}\sum_{i=1}^\infty a_i = \boxed{\frac{2}{3}}.
 \end{align*}
     
+\section{Motivation}
+
+How did I (or many other solutions) come up with the right coefficients? 
+The main thing is that we want to evaluate the series after making the 
+boudning due to AM-GM. If we tried bounding naively,
+$(a_1 \dots a_n)^{\frac{1}{n}} \le \sum_{i}^{n} \frac{a_i}{n}$, then 
+\begin{align*}
+    S &= \sum_{n=1}^\infty \frac{n}{2^n} (a_1 a_2 \cdots a_n)^{1/n} \le 
+    \sum_{n=1}^\infty \frac{1}{2^n}\sum_{i=1}^{n} {a_i}\\
+    &= \sum_{i=1}^\infty \sum_{n=i}^{\infty} \frac{a_i}{2^n}\\
+\end{align*}
+which does not simplify nicely into $\sum_{i=1}^n a_i$.
+
+Refined Goal: We want to use some form of AM-GM to get this cancellation:$$S \le \sum_{n=1}^{\infty} \frac{n}{2^n} \left[ \frac{\text{Some Arithmetic Mean}}{n} \right] = \sum_{n=1}^{\infty} \frac{1}{2^n} [\text{Some Arithmetic Mean}]$$
 
 
-
-
-
+The naive AM-GM on $a_k$ didn't work, so we need to use it on a modified or weighted sequence. Since the problem involves an exponential term $2^n$, it's natural to guess an exponential weight, say $c^k$.Let's apply AM-GM to the sequence $x_k = c^k a_k$:$$( (c^1 a_1)(c^2 a_2)\cdots(c^n a_n) )^{1/n} \le \frac{\sum_{k=1}^n c^k a_k}{n}$$Now, let's simplify that Left-Hand Side (LHS):$$LHS = (c^{1+2+\cdots+n} \cdot a_1 \cdots a_n)^{1/n}$$$$LHS = (c^{n(n+1)/2})^{1/n} \cdot (a_1 \cdots a_n)^{1/n}$$$$LHS = c^{(n+1)/2} \cdot (GM_n)$$So, our inequality is $c^{(n+1)/2} \cdot (GM_n) \le \frac{\sum c^k a_k}{n}$.Isolating the $GM_n$ term (which is what's in our sum):$$(GM_n) \le \frac{1}{c^{(n+1)/2}} \cdot \frac{\sum c^k a_k}{n}$$ The "Aha!" Moment: Matching the ExponentsNow, let's substitute this back into our "Refined Goal" expression from Step 2:$$S \le \sum_{n=1}^{\infty} \frac{n}{2^n} \left[ \frac{1}{c^{(n+1)/2}} \cdot \frac{\sum_{k=1}^n c^k a_k}{n} \right]$$The $n$ terms cancel beautifully, just as we hoped!$$S \le \sum_{n=1}^{\infty} \left[ \frac{1}{2^n \cdot c^{(n+1)/2}} \right] \sum_{k=1}^n c^k a_k$$This still looks complicated. We need to make the denominator $D = 2^n \cdot c^{(n+1)/2}$ as simple as possible.$$D = 2^n \cdot c^{n/2} \cdot c^{1/2} = \sqrt{c} \cdot (2 \cdot c^{1/2})^n$$We want this to simplify into something that will create a clean geometric series after we swap the summations. The cleanest possible simplification would be if $2 \cdot c^{1/2}$ was equal to $c$. Or, more simply, what if $2^n \cdot c^{n/2}$ simplifies to $c^n$?We need $2^n \cdot c^{n/2} = c^n$.Divide by $c^{n/2}$: $2^n = c^{n/2}$.Take the $n$-th root: $2 = c^{1/2} = \sqrt{c}$.$c = 4$This is the "magic" number. By choosing $c=4$, we are "matching" the $2^n$ from the problem with the $c^{(n+1)/2}$ that arises from the AM-GM.Let's see what happens when $c=4$:The denominator $D$ becomes:$$D = 2^n \cdot 4^{(n+1)/2} = 2^n \cdot (2^2)^{(n+1)/2} = 2^n \cdot 2^{n+1} = 2^{2n+1} = 2 \cdot 4^n$$Plugging this in:$$S \le \sum_{n=1}^{\infty} \left[ \frac{1}{2 \cdot 4^n} \right] \sum_{k=1}^n 4^k a_k$$$$2S \le \sum_{n=1}^{\infty} \sum_{k=1}^n \frac{4^k a_k}{4^n}$$This is exactly the expression in the solution, and it's guaranteed to work because we can swap the summation and get a clean geometric series.
 
 \end{document}
