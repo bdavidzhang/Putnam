@@ -1,0 +1,168 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(2017 A2) Let $Q_0(x) = 1$, $Q_1(x) = x$, and
+\[
+Q_n(x) = \frac{(Q_{n-1}(x))^2 - 1}{Q_{n-2}(x)}
+\]
+for all $n \geq 2$. Show that, whenever $n$ is a positive integer, $Q_n(x)$ is equal to a polynomial with integer coefficients.
+
+\section{Solution}
+Given the form of the question, it is inviting to use induction. 
+However, and I must point out that this could just be my algebraic skills, but 
+the given form 
+\[
+Q_n(x) = \frac{(Q_{n-1}(x))^2 - 1}{Q_{n-2}(x)}
+\]
+does not have a directly good algebraic form to make proofs pertaining our claim 
+that $Q_n(x) \in \mathbb{Z}[x]$. 
+
+Instead, we may be motivated to find an alternative form of the expression:
+Let's observe the terms:
+
+\begin{itemize}
+    \item $Q_0(x) = 1$
+    \item $Q_1(x) = x$
+    \item $Q_2(x) = x^2 - 1$
+    \item $Q_3(x) = x^3 - 2$
+    \item $Q_4(x) = x^4 - 3x^2 + 1$
+\end{itemize}
+Do you see 
+\[
+    Q_n(x) = xQ_{n-1}(x) - Q_{n-2}?
+\]
+
+Now we need to that this is indeed the case. Since we are given 
+\[
+Q_n(x) = \frac{(Q_{n-1}(x))^2 - 1}{Q_{n-2}(x)},
+\]
+the justification lies in this expression leading to the linear recurrence. 
+
+We first assume via induction that the linear expression is valid up to $Q_{n-1}$, 
+then consider 
+\begin{align*}
+    Q_n(x) &= \frac{(Q_{n-1}(x))^2 - 1}{Q_{n-2}(x)}\\
+    &= \frac{x^2Q_{n-2}^2  - 2xQ_{n-2}Q_{n-3}+ Q_{n-3}^2-1}{Q_{n-2}(x)}\\
+    &= \frac{x^2Q_{n-2}^2  - 2xQ_{n-2}Q_{n-3} + Q_{n-2}Q_{n-4}}{Q_{n-2}(x)}\\
+    &= {x^2Q_{n-2} - 2xQ_{n-3} + Q_{n-4}}\\
+    &= {x^2Q_{n-2} - xQ_{n-3} - (xQ_{n-3} - Q_{n-4})}\\
+    &= {x^2Q_{n-2} - xQ_{n-3} - Q_{n-2}}\\
+    &= {x(xQ_{n-2} - Q_{n-3}) - Q_{n-2}}\\
+    &= {xQ_{n-1} - Q_{n-2}},
+\end{align*}
+and we have derived the linear recurrence!
+
+
+Now assume again via induction that for all natural numbers $i < m$, 
+$Q_i \in \mathbb{Z}[x]$, then 
+\[Q_m = xQ_{m-1} - Q_{m-2}\]
+since $\mathbb{Z}[x]$ is closed under addition and multiplication, 
+$Q_m$ is an integer. 
+
+
+\section{Observations}
+The expression 
+\(
+Q_n(x) = \frac{(Q_{n-1}(x))^2 - 1}{Q_{n-2}(x)},
+\)
+seems quite familar. I remember an AIME problem with 
+a similar setting, but to find the $2021$th (I made that up)
+term, given the inital expresion involving a 
+ratio between several terms. The most common idea 
+was to write down a few terms to gain some intution. 
+
+The Core Idea: Linear vs. Quadratic RecurrenceThe problem's "trick" is that a messy, non-linear (quadratic) recurrence relation is equivalent to a simple, linear one.The Given Recurrence (Quadratic):$Q_n(x) = \frac{(Q_{n-1}(x))^2 - 1}{Q_{n-2}(x)}$This is hard to work with.
+
+If you rearrange it, you get
+\[Q_n(x) Q_{n-2}(x) = (Q_{n-1}(x))^2 - 1\]
+The "Hidden" Recurrence (Linear):
+\[Q_n(x) = x Q_{n-1}(x) - Q_{n-2}(x)\]
+
+This is very easy to work with. If you assume this recurrence is true, the proof is trivial:Base Cases: $Q_0 = 1$ and $Q_1 = x$ are polynomials with integer coefficients.Inductive Step: Assume $Q_{n-1}$ and $Q_{n-2}$ are polynomials with integer coefficients. Then $Q_n = x \cdot Q_{n-1} - Q_{n-2}$ is just the product, sum, and difference of such polynomials, which must also be a polynomial with integer coefficients.
+
+\subsection{Remark 1: A motivation for the problem}
+Remark 1: The "Real" Identity (Chebyshev Polynomials)This is the most important piece of background. 
+This problem is a disguised version of a standard identity for Chebyshev Polynomials.Chebyshev Polynomials of the Second Kind ($U_n(y)$)
+ are defined by the exact same linear recurrence, just with a slightly different variable:
+\[U_0(y) = 1, U_1(y) = 2y, \dots, U_n(y) = 2y \cdot U_{n-1}(y) - U_{n-2}(y)\]
+
+The Connection: If you make the substitution $x = 2y$ (or $y = x/2$), our polynomials $Q_n(x)$ are identical to $U_n(y)$. 
+Therefore, $Q_n(x) = U_n(x/2)$.The original problem's identity \[Q_n(x) Q_{n-2}(x) = (Q_{n-1}(x))^2 - 1\]
+ is just a famous, standard identity for Chebyshev polynomials, which is 
+ 
+\[U_n(y) U_{n-2}(y) = (U_{n-1}(y))^2 - 1.\]
+This identity is usually proven using the trigonometric definition $U_n(\cos \theta) = \frac{\sin((n+1)\theta)}{\sin \theta}$, where it becomes a simple trig identity.
+
+
+\subsection{Remark 2: Matrix Proof \& Cassini's Identity}
+This remark connects the problem to another famous example: the Fibonacci sequence.
+
+Fibonacci Recurrence: $F_n = F_{n-1} + F_{n-2}$
+
+Cassini's Identity: $F_{n+1} F_{n-1} - F_n^2 = (-1)^n$
+
+
+Notice the pattern: a second-order linear recurrence ($F_n = ...$) leads to a quadratic identity (Cassini's). 
+
+Our problem is the same:
+
+Linear Recurrence: $Q_n = x Q_{n-1} - Q_{n-2}$
+
+Quadratic Identity: $Q_n Q_{n-2} - Q_{n-1}^2 = -1$, or $(Q_{n-1})^2 - Q_n Q_{n-2} = 1$.
+
+The matrix proof  is the standard way to prove all of these identities.The matrix $T = \begin{pmatrix} x & -1 \\ 1 & 0 \end{pmatrix}$ is the "transition matrix" for the linear recurrence.
+
+The identity $T M_n = M_{n+1}$ just says "applying the transition matrix to the state at step $n$ gives the state at step $n+1$."
+
+The core of the proof is that $\det(M_{n+1}) = \det(T M_n) = \det(T) \det(M_n)$.
+
+Since $\det(T) = (x)(0) - (-1)(1) = 1$, the determinant never changes!
+
+\[\det(M_n) = \det(M_{n-1}) = \dots = \det(M_1). \quad \det(M_1) = \begin{vmatrix} P_0 & P_1 \\ P_{-1} & P_0 \end{vmatrix} = \begin{vmatrix} 1 & x \\ 0 & 1 \end{vmatrix} = 1.\]
+
+
+Therefore, $\det(M_n) = (P_{n-1})^2 - P_n P_{n-2} = 1$ for all $n$.
+
+This is a beautiful and general technique. For the Fibonacci sequence, the transition matrix is $\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}$, which has a determinant of -1. This is precisely why the $F_n$ identity has $(-1)^n$ in it, while the $Q_n$ identity has $1^n = 1$.
+
+As mentioned, in general, \textbf{a second-order linear recurrence ($F_n = ...$) leads to a quadratic identity (Cassini's). }
+
+\subsection{Remark 3: Combinatorial Interpretation}
+
+The third way to understand these polynomials, this time through combinatorics.
+
+They define a new set of polynomials, $R_n(x)$, called Fibonacci Polynomials (though this name is used for a few different things).
+
+
+
+Definition: $R_n(x)$ is the generating function for the number of ways to tile a $1 \times n$ board with $1 \times 1$ squares (which count as "$x$") and $1 \times 2$ dominoes (which count as "1").
+
+
+Example $R_3(x)$:Tile (1,1,1): $x \cdot x \cdot x = x^3$Tile (1, 2): $x \cdot 1 = x$Tile (2, 1): $1 \cdot x = x$Total: $R_3(x) = x^3 + 2x$\\
+
+Recurrence for $R_n(x)$: To tile a $1 \times n$ board, you can either:Start with a $1 \times 1$ square (cost: $x$) and then tile the remaining $1 \times (n-1)$ board. This gives $x \cdot R_{n-1}(x)$.Start with a $1 \times 2$ domino (cost: $1$) and then tile the remaining $1 \times (n-2)$ board. This gives $1 \cdot R_{n-2}(x)$.
+
+This gives the linear recurrence \[R_n(x) = x R_{n-1}(x) + R_{n-2}(x).\]
+
+This is almost our $Q_n$ recurrence, but with a + sign instead of a -. 
+
+We can then connect them with a change of variables:
+\[Q_n(x) = i^{-n} R_n(ix)\]
+This algebraic substitution transforms one linear recurrence into the other. The complex combinatorial identity for $R_n$ is just another version of Cassini's identity, which, when transformed, becomes the identity for $Q_n$.
+
+
+See related:
+
+(1993 A2) Let $(x_n)_{n \geq 0}$ be a sequence of nonzero real numbers
+such that $x_n^2 - x_{n-1}x_{n+1} = 1$ for $n=1,2,3,\dots$. Prove there
+exists a real number $a$ such that $x_{n+1} = ax_n - x_{n-1}$ for all $n
+\geq 1$.
+
+
+\end{document}
