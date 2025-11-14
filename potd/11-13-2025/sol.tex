@@ -1,0 +1,69 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(1972 B3) Let $G$ be a group and let $g, h \in G$ satisfy
+\[
+ghg = hg^2h, \quad g^3 = 1,
+\]
+and suppose $h^m = 1$ for some odd integer $m$. Prove that $h=1$.
+
+\section{(Wrong) Solution}
+Rewrite the given equation as 
+\[
+ghg = hg^{-1}h
+\]
+
+\textbf{Please let me know how to show this and when can I make these substitutions!} We assume without proof that 
+\[
+g^{-1}hg^{-1} = hgh
+\]
+then we can claim:
+\begin{align*}
+    hghg &= h^2g^{-1}h \\ 
+    g^{-1}h &= h^2g^{-1}h \\ 
+    g^{-1} &= h^2g^{-1} \\ 
+    1 &= h^2 \\ 
+\end{align*}
+
+and since $h^m = 1$ for some odd $m$, $h^{2n+1} = 1$ and thus 
+$h = 1$.
+
+\section{Solution}
+Let's work backwards:
+If we could show $gh^2 = h^2g$, then
+\begin{align*}
+    h^2 &= g^{-1}h^2 g\\
+    h^{2k} &= g^{-1}h^{2k} g \quad \forall k \in \mathbb{Z}^{+}\\
+\end{align*}
+If $h^{2n+1} = 1$, let $k = n+1$, then 
+\begin{align*}
+    h^{2n+2} &= g^{-1}h^{2n+2} g \\
+    h &= g^{-1}hg\\
+    gh &= hg\\
+    ghg &= hg^{-1}\\
+    g^{-1}h &= hg^{-1}h\\
+    h &= 1.
+\end{align*}
+
+Now we show $h^2g = gh^2$, to see this:
+\[
+gh^2 = ghg g^{-1}h = hg^{-1}hg^{-1}h = hg^{-1}ghg = h^2g,
+\]
+and we are done.
+
+\section{Remark}
+To be frank, I am currently not great with solving these problems, and 
+I did not come up with the idea to this solution.
+
+The solution wrote:
+With hindsight, the correct approach is probably to work systematically through a set of increasingly complex expressions, trying to simplify them more than one way in order to get a new relation.
+
+
+
+\end{document}
