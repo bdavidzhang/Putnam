@@ -1,0 +1,107 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\usepackage{hyperref}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+\subsection{Problem 1}
+Evaluate
+\[ \int_{2}^{4} \frac{\sqrt{\ln(9-x)}}{\sqrt{\ln(9-x)} + \sqrt{\ln(x+3)}} \, dx \]
+\subsection{Problem 2}
+(A3, 1980 Putnam)
+\[ \int_{0}^{\pi/2} \frac{dx}{1 + (\tan x)^{\sqrt{2}}} \]
+\subsection{Problem 3}
+Evaluate
+\[ \int_{0}^{\pi/2} \ln(\sin x) \, dx \]
+\section{Solution}
+
+All three problems revolve around the same integral property:
+for any function $f(x)$, 
+\[
+    \int_{0}^{a} f(x) dx = \int_{a}^0 f(a-x) (-dx) = \int_0^{a} f(a-x) dx.
+\]
+
+Which is called the \textbf{King property} for integrals because
+it tends to be the most prominant of all integral properties.
+
+\subsection{Problem 1}
+Observe that $-3 \le x \le 9$, so the center is $x = 3$,
+substitute $y = x-3$ to center around $0$, then the integral is 
+
+\[ I = \int_{-1}^{1} \frac{\sqrt{\ln(6-y)}}{\sqrt{\ln(6-y)} + \sqrt{\ln(6+y)}} \, dy \]
+making the substitution $u = -y$, 
+\[ I = J = \int_{-1}^{1} \frac{\sqrt{\ln(6+u)}}{\sqrt{\ln(6+u)} + \sqrt{\ln(6-u)}} \, du \]
+then 
+\[I + J = 2I = \int_{-1}^{1} \frac{\sqrt{\ln(6-y)}+\sqrt{\ln(6+y)}}{\sqrt{\ln(6-y)} + \sqrt{\ln(6+y)}} \, dy = 2\]
+so $I = 1$.
+
+\subsection{Problem 2}
+Let
+\[ I = \int_{0}^{\pi/2} \frac{dx}{1 + (\tan x)^{\sqrt{2}}} \]
+then using the King property
+\[ I = \int_{0}^{\pi/2} \frac{dx}{1 + (\tan (\frac{\pi}{2} - x))^{\sqrt{2}}} \]
+and since $\tan (\frac{\pi}{2} - x) = \cot(x)$,
+\[ I = \int_{0}^{\pi/2} \frac{dx}{1 + (\cot (\frac{\pi}{2} - x))^{\sqrt{2}}} \]
+then 
+\[I + I = 2I = \int_{0}^{\pi/2} \frac{1}{1 + (\tan (\frac{\pi}{2} - x))^{\sqrt{2}}}+ \frac{1}{1 + (\cot (\frac{\pi}{2} - x))^{\sqrt{2}}} dx = \frac{\pi}{2}.\]
+Thus $I = \frac{\pi}{4}$.
+
+
+\subsection{Problem 3}
+Let 
+\[ I = \int_{0}^{\pi/2} \ln(\sin x) \, dx \]
+then using King's property
+\[ I = \int_{0}^{\pi/2} \ln(\sin (\frac{\pi}{2} - x)) \, dx  = \int_{0}^{\pi/2} \ln(\cos (x)) \, dx \]
+thus 
+\begin{align*}
+    2I &=  \int_{0}^{\pi/2} \ln(\sin x) + \ln(\cos x) \, dx\\
+    &=  \int_{0}^{\pi/2} \ln(\sin{2x} / 2) \, dx\\
+    &=  \int_{0}^{\pi/2} \ln(\sin{2x}) - \ln{2} \, dx\\
+    &=  \int_{0}^{\pi/2} \ln(\sin{2x})\, dx - \ln{2}\frac{\pi}{2}\\
+\end{align*}
+Now let $u = 2x$, then 
+\begin{align*}
+    \int_{0}^{\pi/2} \ln(\sin{2x})dx &= \int_{0}^{\pi} \ln(\sin{u}) du/2
+\end{align*}
+since $\sin{x}$ is symmetric about $\frac{\pi}{2}$ on 
+$[0,\pi]$, $\ln(\sin{x})$ is also symmetric about 
+$\frac{\pi}{2}$, then 
+\begin{align*}
+    \int_{0}^{\pi/2} \ln(\sin{2x})dx &= \int_{0}^{\pi/2} \ln(\sin{u}) du = I
+\end{align*}
+and once we substitute back to the given expression, 
+
+\begin{align*}
+    2I &= \int_{0}^{\pi/2} \ln(\sin{2x})\, dx - \ln{2}\frac{\pi}{2}\\
+     &= I - \ln{2}\frac{\pi}{2}\\
+\end{align*}
+and thus $I = - \ln{2}\frac{\pi}{2}$.
+
+
+\section{Remarks}
+For more practice problems, see 
+\href{https://static1.squarespace.com/static/59471704440243a2a0adc0e0/t/5ce06f9ad7031b00018e7e00/1558212507453/king+property.pdf}{practice problems}.
+
+The name "King Property" (or "King's Rule") is widely believed to have been popularized in India by Vinod Kumar Bansal, a famous teacher for the JEE (Joint Entrance Examination) competitive exams.
+
+Here's why it got the name:
+
+It's the "King" of Integral Properties: In the context of solving tricky definite integrals for competitions, this property is considered the most powerful and most important one to use.
+
+It "Rules" Over Many Problems: Just like the problem you shared, this property can elegantly solve integrals that look almost impossible at first glance. It's the "go-to" rule that "conquers" these problems.
+
+Part of a Set: This teacher also reportedly named other, related properties the "Queen's Rule" and "Jack's Rule," treating this one as the "King" of the set.
+
+The King PropertyThis is the one you just used. It's the most general and powerful, which is why it's the "King."Formula: $\int_a^b f(x) \, dx = \int_a^b f(a+b-x) \, dx$Common Case: $\int_0^a f(x) \, dx = \int_0^a f(a-x) \, dx$
+
+
+The Queen PropertyThe "Queen Property" is a variation that deals with integrals from $0$ to $2a$. It's used to "fold" the interval in half.Formula: $\int_0^{2a} f(x) \, dx = \int_0^a f(x) \, dx + \int_0^a f(2a-x) \, dx$This rule becomes especially powerful in two specific cases:If $f(2a-x) = f(x)$ (the function is symmetric about $x=a$), then:$\int_0^{2a} f(x) \, dx = 2 \int_0^a f(x) \, dx$If $f(2a-x) = -f(x)$ (the function is anti-symmetric about $x=a$), then:$\int_0^{2a} f(x) \, dx = 0$
+
+The Jack PropertyThe "Jack Property" is the most common and basic rule, usually taught first. It deals with even and odd functions integrated over a symmetric interval, like $[-a, a]$.If $f(x)$ is an EVEN function (i.e., $f(-x) = f(x)$), then:$\int_{-a}^a f(x) \, dx = 2 \int_0^a f(x) \, dx$(The area on the left side is identical to the area on the right.)If $f(x)$ is an ODD function (i.e., $f(-x) = -f(x)$), then:$\int_{-a}^a f(x) \, dx = 0$(The area on the left is the exact negative of the area on the right, so they cancel out.)
+
+
+\end{document}
