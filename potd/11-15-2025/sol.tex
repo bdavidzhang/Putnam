@@ -1,0 +1,84 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+
+(2020 A2) Let $k$ be a nonnegative integer. Evaluate
+\[
+\sum_{j=0}^k 2^{k-j} \binom{k+j}{j}.
+\]
+
+\section{Solution}
+
+We first try out a few terms, let 
+\[
+f(k) = \sum_{j=0}^k 2^{k-j} \binom{k+j}{j}
+\]
+\begin{itemize}
+    \item $f(1) = 4$
+    \item $f(2) = 16$
+    \item $f(3) = 64$
+    \item $f(4) = 256$
+\end{itemize}
+so we suspect that $f(k) = 4^k = 2^{2k}$, 
+then it suffices to show that 
+
+\[
+g(k) = \sum_{j=0}^k 2^{-j} \binom{k+j}{j} = 2^{k}
+\]
+
+The few previous terms will be our base cases. Now 
+for the inductive case, assume that 
+$g(k) = 2^k$, consider $g(k+1)$:
+\begin{align*}
+    g(k+1) &= \sum_{j=0}^{k+1} 2^{-j} \binom{k+j+1}{j}\\
+    &=  \sum_{j=0}^{k+1} 2^{-j} \binom{k+j+1}{k+1}\\
+    &=  \sum_{j=0}^{k+1} 2^{-j} \left[\binom{k+j}{k} + \binom{k+j}{k+1}\right]\\
+\end{align*}
+here we use $\binom{a+1}{j+1} = \binom{a}{j} + \binom{a}{j+1}$ (known as the committee argument),
+then 
+\begin{align*}
+    g(k+1)
+    &=  \sum_{j=0}^{k+1} 2^{-j} \left[\binom{k+j}{k} + \binom{k+j}{k+1}\right]\\
+    &=  \sum_{j=0}^{k+1} 2^{-j}\binom{k+j}{k} + \sum_{j=0}^{k+1} 2^{-j}\binom{k+j}{k+1}\\
+    &=  \sum_{j=0}^{k} 2^{-j}\binom{k+j}{k} + 2^{-(k+1)}\binom{2k+1}{k+1} + \sum_{j=0}^{k+1} 2^{-j}\binom{k+j}{k+1}\\
+    &=  g(k) + 2^{-(k+1)}\binom{2k+1}{k+1} + \sum_{j=0}^{k+1} 2^{-j}\binom{k+j}{k+1}\\
+\end{align*}
+Now we consider 
+\begin{align*}
+    L &=  \sum_{j=0}^{k+1} 2^{-j}\binom{k+j}{k+1} \\ 
+    &=  \sum_{j=1}^{k+1} 2^{-j}\binom{k+j}{k+1} \\ 
+    &=  \sum_{i=0}^{k} 2^{-(i+1)}\binom{k+i+1}{k+1} \\ 
+    &=  \sum_{i=0}^{k} 2^{-(i+1)}\binom{k+i+1}{i} \\ 
+\end{align*}
+Note that this expression for $L$ looks a lot like $g(k+1)$, so we exploit it: 
+\begin{align*}
+    2L 
+    &=  \sum_{i=0}^{k} 2^{-i}\binom{k+i+1}{i} \\ 
+    &=  g(k+1) - 2^{-(k+1)} \binom{2k+2}{k+1} \\ 
+\end{align*}
+thus going back to the expression for $g(k)$, we have 
+\begin{align*}
+    g(k+1)
+    &=  g(k) + 2^{-(k+1)}\binom{2k+1}{k+1} + L\\
+    &=  g(k) + 2^{-(k+1)}\binom{2k+1}{k+1} + \frac{1}{2}\left(g(k+1) - 2^{-(k+1)} \binom{2k+2}{k+1}\right)\\
+    \frac{1}{2}g(k+1) &= g(k) + 2^{-(k+1)}\binom{2k+1}{k+1} +  - 2^{-(k+2)} \binom{2k+2}{k+1}\\
+     &= g(k) + 2^{-(k+2)}\left[2\binom{2k+1}{k+1} -   \binom{2k+2}{k+1}\right]\\
+     &= g(k) + 2^{-(k+2)}\left[\binom{2k+1}{k+1}+\binom{2k+1}{k} -  \left(\binom{2k+1}{k}+\binom{2k+1}{k+1}\right)\right]\\
+     &= g(k) + 2^{-(k+2)}\left[\binom{2k+1}{k+1}  - \binom{2k+1}{k+1}\right]\\
+     &= g(k) + 0 = g(k)\\
+\end{align*}
+thus $g(k+1) = 2g(k) = 2^{k+1}$, and we are done.
+
+
+
+
+
+
+
+\end{document}
