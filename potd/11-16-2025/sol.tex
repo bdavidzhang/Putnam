@@ -1,0 +1,74 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(1977 B5)
+Prove that for $n\geq 2$,
+\[
+\overbrace{2^{2^{\cdots^{2}}}}^{\mbox{$n$ terms}} \equiv
+\overbrace{2^{2^{\cdots^{2}}}}^{\mbox{$n-1$ terms}} \quad \pmod{n}.
+\]
+
+\section{Solution}
+We redefine the variables for style. Let 
+\[x_i = \overbrace{2^{2^{\cdots^{2}}}}^{\mbox{$i$ terms}}\]
+for all $i \in \mathbb{N}$.
+
+Our goal is to show that $\forall n \ge 2 \in \mathbb{Z}$, 
+there exists some $m_n$ such that 
+\[x_{m_n} = x_{m_n+1} = \dots \pmod{n}.\]
+
+We proceed with strong induction on $n$. The base case 
+is $n = 2$, in this case, 
+$x_1 = 2, x_2 = 2^2 = 4, x_3 = 2^{2^2} = 16 ...$, 
+so $m_1 = 1$, the statement holds for $n = 2$. 
+
+The inductive hypothesis: assume this works for all integers $2, \dots, n-1$ 
+for some integer $n \ge 3$, we want to show that there is also 
+a desired integer $m_n$. 
+
+We can split $n = 2^a b$ to divide and conquer using the Chinese Remainder Theorem,
+considering the sequence mod $2^a$ and the sequence mod $b$, and deducing the 
+behavior under mod $n$. 
+
+Under mod $2^a$, for all $j \in \mathbb{N}$ such that $x_{j-1} \ge a$, $x_j = 0 \pmod{2^a}$,
+this is because $x_j = 2^{x_{j-1}}$ and we need to ensure that 
+$x_{j-1} \ge a$, so we set $m_a$ to be the smallest $j$ such $j$. 
+
+Under mod $b$, we note that $\gcd(b,2) = 1$, so from Euler's theorem: 
+
+\[2^{\phi(b)} = 1 \pmod{b}\]
+then for $x_j = x_{j+1} \pmod{b}$, we only need to ensure that 
+$2^{x_{j-1}} = 2^{x_{j}}\pmod{b}$, so we need 
+\[x_{j-1} = x_j \pmod{\phi(b)}.\]
+
+Here comes the punchline! Since $\phi(b) < b < n$, there exists 
+$m_{\phi(b)}$ such that 
+\[x_{m_{\phi(b)}} = x_{m_{\phi(b)+1}} = \dots \pmod{\phi(b)},\]
+then 
+we take $m_b = m_{\phi(b)+1}$, so that 
+\[x_{m_b} = x_{m_b+1} = \dots \pmod{b
+}.\]
+
+Now define $m_n = \max(m_a,m_b)$, then 
+\begin{align*}
+    x_{m_n} &= x_{m_n+1} \pmod{2^a} \\ 
+    x_{m_n} &= x_{m_n+1} \pmod{b} \\ 
+\end{align*}
+hence $2^a \mid x_{m_n+1} - x_{m_n}$ and $b \mid x_{m_n+1} - x_{m_n}$, and since $\gcd(2^a, b) = 1$, 
+$n = 2^ab \mid x_{m_n+1} - x_{m_n}$
+hence 
+\[x_{m_n} = x_{m_n+1} = \dots \pmod{n}.\]
+
+
+Furthermore, since $m_b$ is always larger than $m_a$, $m_n = m_b \le b < n$, so the original claim always holds.
+
+
+
+
+\end{document}

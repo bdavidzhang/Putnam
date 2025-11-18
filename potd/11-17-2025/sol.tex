@@ -1,0 +1,55 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(2005 B4)
+For positive integers $m$ and $n$, let $f(m,n)$ denote the number of
+$n$-tuples $(x_1,x_2,\dots,x_n)$ of integers such that
+$|x_1| + |x_2| + \cdots + |x_n| \leq m$.
+Show that $f(m,n) = f(n,m)$.
+
+\section{Solution}
+
+We consider the difference 
+\[f(m,n) - f(m-1,n) = \left|\{(x_1,\dots,x_n) \mid |x_1| + \dots + |x_n| = m\}\right|,\]
+Let $D = \left|\{(x_1,\dots,x_n) \mid |x_1| + \dots + |x_n| = m\}\right|$, 
+and consider the values $x_n$ can take. If $x_n = 0$, then only need to consider 
+$\left|\{(x_1,\dots,x_{n-1}) \mid |x_1| + \dots + |x_{n-1}| = m\}\right|$. 
+If $x_n \neq 0$, then $|x_n| \ge 1$, so we need to consider 
+$2\left|\{(x_1,\dots,x_{n-1}) \mid |x_1| + \dots + |x_{n-1}| \le m-1\}\right|$.
+Thus 
+\[D = \left|\{(x_1,\dots,x_{n-1}) \mid |x_1| + \dots + |x_{n-1}| = m\}\right| + 2\left|\{(x_1,\dots,x_{n-1}) \mid |x_1| + \dots + |x_{n-1}| \le m-1\}\right|.\]
+
+By definition, note that 
+\[ \left|\{(x_1,\dots,x_{n-1}) \mid |x_1| + \dots + |x_{n-1}| = m\}\right| = f(m,n-1) - f(m-1,n-1)\]
+and 
+\[\left|\{(x_1,\dots,x_{n-1}) \mid |x_1| + \dots + |x_{n-1}| \le m-1\}\right| = f(m-1,n-1)\]
+so 
+\[f(m,n) - f(m-1,n) = f(m,n-1) - f(m-1,n-1) + 2f(m-1,n-1).\]
+\[f(m,n) = f(m,n-1) + f(m-1,n) + f(m-1,n-1).\]
+
+Now we show from induction that $f(n,m) = f(m,n)$. We first show that 
+$f(n,1) = f(1,n)$ as the base case. 
+$f(n,1) = \left|\{x_1 \mid |x_1| \le n\}\right| = 2n+1$.
+$f(1,n) = \left|\{(x_1,\dots,x_{n})\} \mid |x_1| + \dots |x_n| \le 1\right|$. For the $=1$ case, there are $2n$ choices, and for the $=0$ choice, 
+there is one option, so the result is also $2n+1$, and thus they are equal. 
+
+From the IH assume that $f(n,m) = f(m,n)$ for all $m + n < k$, where $k \ge 3$ is an integer, 
+then consider $m+n = k$, since 
+\[f(m,n) = f(m,n-1) + f(m-1,n) + f(m-1,n-1)\]
+and 
+\[f(n,m) = f(n,m-1) + f(n-1,m) + f(n-1,m-1) = f(m-1,n) + f(m,n-1) + f(m-1,n-1) = f(m,n)\]
+for all $m+n = k$, and we are done with the proof.
+
+
+
+
+
+
+
+\end{document}
