@@ -1,0 +1,47 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(1990 A3)Prove that any convex pentagon whose vertices (no three of
+which are collinear) have integer coordinates must have area greater than
+or equal to 5/2.
+
+\section{Solution}
+
+Recall from Pick's theorem that for a convex polygon $P$, 
+Let $I$ be the set of grid points inside $P$, and $B$ be the 
+set of grid points on the boundary of $P$, then 
+\[Area(P) = \left|I\right| + \frac{1}{2} \left|B\right| - 1.\]
+
+In our case, $B = 5$, thus we only need to show that 
+$I + \frac{3}{2} \ge \frac{5}{2}$, so 
+we need to show $I \ge 1$. 
+
+Since all coordinates are integers, they can have four possible parity \\
+configurations:
+$(E,E),(O,O),(O,E),(E,O)$, which can be seen as 
+4 pigeonholes, and since there are 
+ $5$ points, so there must be two points with the same configuration. 
+For two points with the same configuration, their midpoint must be a grid point. 
+
+There are two cases: If the two points are diagonally across from each other,
+their grid point is in the interior, 
+then there is a grid point inside and we are done. \\Otherwise, the two points 
+are on the boundary, and their midpoint is also on the boundary,
+which reduces the problem to a smaller subproblem, as 
+we have another convex pentagon on grid points again. 
+
+From a high level perspective, this process will terminante eventually,
+hence there will always be an interior point, and thus 
+$Area(P) \ge \frac{5}{2}$. In fact, the construction for 
+$Area(P) = \frac{5}{2}$ is given by 
+the polygon $(0,0),(1,0),(0,1),(1,1),(1,2)$. 
+
+
+
+\end{document}
