@@ -1,0 +1,45 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+(2017 A6) The 30 edges of a regular icosahedron are distinguished by labeling them $1,2,\dots,30$. How many different ways 
+are there to paint each edge red, white, or blue such that each of the 20 triangular faces of the icosahedron has two edges of the same color and a third edge of a different color? [Note: the top matter on each exam paper included the logo of the Mathematical Association of America, which is itself an icosahedron.]
+
+\section{Solution}
+
+We assign numbers $0,1,2$ to the edge colors white, red, blue, and consider 
+the labels each face of the icosahedron under mod 3, where the label 
+is equal to the sum of the three edges. 
+
+If the three edges have the same color $x$, the 
+value of the face is $3x = 0$. 1
+
+If the three edges all have different colors $x,y,z = 0,1,2$, the 
+value of the face is $x+y+z = 0$.
+
+If two edges have the same color $x$, but one different $y$, then 
+the value of the face is $2x+y = -x+y \neq 0$ because $x \neq y$. 
+
+We convert this to a graph theory problem. 
+The regular icosahedron has $30$ edges, $20$ faces, and $12$ vertices, it can be 
+represented by a graph with $30$ edges and $12$ vertices. 
+
+It's \mathbf{dual shape} has $30$ edges, $12$ faces, and $20$ vertices (this is a dodecahedron),
+where faces in the primal are vertices in the dual, 
+so this becomes an undirected graph of $20$ vertices with weighted edges and vertices,
+
+and we want to find all such graphs where the weight at each vertex, which 
+is defined as the sum of all edge weights going into the vertex, is not 0 mod 3.
+
+Then the answer is $2^{20} 3^{10}$. 
+
+
+
+
+
+\end{document}
