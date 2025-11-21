@@ -1,0 +1,8 @@
+# Ignore media folders anywhere
+**/media/
+
+# Ignore Python cache folders anywhere
+**/__pycache__/
+
+# Ignore all .mov files
+*.mov
