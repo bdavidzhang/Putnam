@@ -1,0 +1,33 @@
+\documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
+\usepackage{mathptmx,amsmath, multirow, graphicx}
+\usepackage{parskip}
+\begin{document}
+
+\title{Putnam POTD \today}
+\maketitle
+
+\section{Problem}
+For nonnegative integers $n$ and $k$, define $Q(n, k)$ to be the coefficient of $x^k$ in the expansion of $(1 + x + x^2 + x^3)^n$. Prove that
+\[
+Q(n, k) = \sum_{j=0}^n \binom{n}{j} \binom{n}{k - 2j}.
+\]
+
+\section{Solution}
+We can factor $1+x+x^2+x^3 = \frac{x^4-1}{x-1} = (x+1)(x^2+1)$,
+so that the original expression is 
+\[P(x) = (x+1)^n(x^2+1)^n = \sum_{i=0}^{n} {n \choose i} x^i \sum_{j=0}^{n} {n \choose j} x^{2j}\] 
+then the coefficient for $x^k$
+is given by 
+\[
+Q(n, k) = \sum_{j=0}^n \binom{n}{j} \binom{n}{k - 2j},
+\]
+where the first term is the coefficient due to $x^2$ and the second due to $x$.
+
+
+
+
+
+
+
+
+\end{document}
