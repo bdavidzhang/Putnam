@@ -1,13 +1,78 @@
 \documentclass[amssymb,pra,12pt,aps,notitlepage]{revtex4-1}
 \usepackage{mathptmx,amsmath, multirow, graphicx}
 \usepackage{parskip}
+
 \begin{document}
 
-\title{Putnam POTD \today}
+\title{Putnam POTD November 24 2025}
 \maketitle
 
 \section{Problem}
+Let $D_n$ denote the value of the $(n-1) \times (n-1)$ determinant
+\[
+\begin{vmatrix}
+3 & 1 & 1 & 1 & \cdots & 1 \\
+1 & 4 & 1 & 1 & \cdots & 1 \\
+1 & 1 & 5 & 1 & \cdots & 1 \\
+1 & 1 & 1 & 6 & \cdots & 1 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & 1 & 1 & 1 & \cdots & n+1
+\end{vmatrix}.
+\]
+Is the set $\{D_n/n!\}_{n \ge 2}$ bounded?
 
 \section{Solution}
+First, subtract the \textbf{first row from the last row} to get:
+\[
+D_n = \begin{vmatrix}
+3 & 1 & 1 & 1 & \cdots & 1 \\
+1 & 4 & 1 & 1 & \cdots & 1 \\
+1 & 1 & 5 & 1 & \cdots & 1 \\
+\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+1 & 1 & 1 & 1 & \cdots & n \\
+-2 & 0 & 0 & 0 & \cdots & n
+\end{vmatrix}.
+\]
+Expanding along the last row gives:
+\[
+D_n = nD_{n-1} + (-2)(-1)^{(n-1)+1} A_{n-1} = nD_{n-1} + 2(-1)^{n} A_{n-1},
+\]
+where $A_{n-1}$ is the determinant of the $(n-2) \times (n-2)$ minor obtained by removing the first column and the last row. Explicitly:
+\[
+A_{n-1} = \begin{vmatrix}
+1 & 1 & 1 & \cdots & 1 \\
+4 & 1 & 1 & \cdots & 1 \\
+1 & 5 & 1 & \cdots & 1 \\
+\vdots & \vdots & \ddots & \vdots \\
+1 & 1 & \cdots & n & 1
+\end{vmatrix}.
+\]
+Subtract the first row from every other row. The resulting matrix has non-zero entries on the diagonal shifted by one column (e.g., $3, 4, \dots, n-1$) and zeros elsewhere below the first row, except for the last row which becomes $[0, \dots, n-1, 0]$:
+\[
+A_{n-1} = \begin{vmatrix}
+1 & 1 & 1 & \cdots & 1 \\
+3 & 0 & 0 & \cdots & 0 \\
+0 & 4 & 0 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & n-1 & 0
+\end{vmatrix}.
+\]
+Expanding along the last column, the only non-zero contribution comes from the top-right $1$:
+\[
+A_{n-1} = (-1)^{1+(n-2)} \cdot 1 \cdot \left( \prod_{k=3}^{n} (k-1) \right) = (-1)^{n-1} \frac{(n-1)!}{2}.
+\]
+Substituting back into the expression for $D_n$:
+\[
+D_n = nD_{n-1} + 2(-1)^{n} \left[ (-1)^{n-1} \frac{(n-1)!}{2} \right].
+\]
+Since $(-1)^n (-1)^{n-1} = -1$, this simplifies to:
+\[
+D_n = nD_{n-1} + (n-1)!.
+\]
+Let $B_n = D_n/n!$. Dividing the recurrence by $n!$:
+\[
+\frac{D_n}{n!} = \frac{nD_{n-1}}{n!} + \frac{(n-1)!}{n!} \implies B_n = B_{n-1} + \frac{1}{n}.
+\]
+For $n=2$, $D_2 = |3| = 3$, so $B_2 = 3/2$. Note that $B_n$ satisfies the recurrence of the Harmonic series $H_n$. Specifically, $B_n = H_n$. Since $\lim_{n \to \infty} H_n = \infty$, the set is unbounded.
 
 \end{document}
